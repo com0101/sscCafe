@@ -19,27 +19,34 @@ class OrderHistoryViewModel(val data: AddItemDao, app: Application) : AndroidVie
     val status: LiveData<List<Order>>
         get() = _status
 
-    private val _order = MutableLiveData<List<OrderItem>>()
-    val order: LiveData<List<OrderItem>>
-        get() = _order
+    private val _orderItem = MutableLiveData<List<OrderItem>>()
+    val orderItem: LiveData<List<OrderItem>>
+        get() = _orderItem
 
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 //
-    val listCheckout: List<Order>
-        get() {
-            val list = mutableListOf<Order>()
-            order.value?.let {
-                for (product in it) {
-                    val productDetail = Order(
-                        product.account
-                      )
-                    list.add(productDetail)
-                }
-            }
-            return list
-        }
+//    val listCheckout: List<Order>
+//        get() {
+//            val list = mutableListOf<Order>()
+//            order.value?.let {
+//                for (product in it) {
+//                    val productDetail = Order(
+//                        product.account
+//                      )
+//                    list.add(productDetail)
+//                }
+//            }
+//            return list
+//        }
+
+    class Content(val map:Map<String,Any?>){
+        val account:String by map
+        val content:Map<String,Any?> by map
+    }
+
+
 
     init {
         getOrder()
@@ -62,12 +69,6 @@ class OrderHistoryViewModel(val data: AddItemDao, app: Application) : AndroidVie
 
     }
 
-
-//    private fun initializeProduct() {
-//        coroutineScope.launch {
-//            addProduct.value = getProductFromDatabase()
-//        }
-//    }
 
     private suspend fun getProductFromDatabase(): AddItem? {
         return withContext(Dispatchers.IO) {
