@@ -8,4 +8,5 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="bottom_select">#3F3A3A</color>
     <color name="bottom_unselect">#979797</color>
+    <color name="gray">#ECECEC</color>
 </resources>

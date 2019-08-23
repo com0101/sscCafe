@@ -41,10 +41,10 @@ interface CafeService {
 
     @GET("items.json")
     fun getItems():
-            Deferred<CafeItem>
+            Deferred<List<CafeItem>>
 }
 
 
 object CafeApi {
-    val retrofitService : CafeApi by lazy { retrofit.create(CafeApi::class.java) }
+    val retrofitService : CafeService by lazy { retrofit.create(CafeService::class.java) }
 }
