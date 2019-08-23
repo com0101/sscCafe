@@ -18,8 +18,8 @@ class HomeViewModel(val data: AddItemDao, app: Application) : AndroidViewModel(a
     val status: LiveData<List<CafeItem>>
         get() = _status
 
-    private val _order = MutableLiveData<Order>()
-    val order: LiveData<Order>
+    private val _order = MutableLiveData<OrderName>()
+    val order: LiveData<OrderName>
         get() = _order
 
     var product = MutableLiveData<CafeItem>()
@@ -46,7 +46,6 @@ class HomeViewModel(val data: AddItemDao, app: Application) : AndroidViewModel(a
             try {
                 val listResult = getPropertiesDeferred.await()
                 _status.value = listResult
-
             } catch (e: Exception) {
                 Log.i("Demo", "exception=${e.message}")
 //                _status.value = ArrayList()
@@ -62,7 +61,7 @@ class HomeViewModel(val data: AddItemDao, app: Application) : AndroidViewModel(a
                 val listResult = getPropertiesDeferred.await()
                 _order.value = listResult
 
-                Log.i("Demo","")
+                Log.i("Sophie_post", "post=${order.value}")
 
             } catch (e: Exception) {
                 Log.i("Demo", "exception=${e.message}")

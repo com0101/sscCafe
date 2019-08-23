@@ -19,36 +19,36 @@ class OrderHistoryViewModel(val data: AddItemDao, app: Application) : AndroidVie
     val status: LiveData<List<Order>>
         get() = _status
 
+    private val _order = MutableLiveData<List<OrderItem>>()
+    val order: LiveData<List<OrderItem>>
+        get() = _order
+
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 //
-//    val listCheckout: List<Order>
-//        get() {
-//            val list = mutableListOf<Order>()
-//            products.value?.let {
-//                for (product in it) {
-//                    val productCheckout = ProductList(
-//                        product.productId,
-//                        product.product_name,
-//                        product.product_price,
-//                        Color(product.product_color_name,product.product_color),
-//                        product.product_size,
-//                        product.product_quantity)
-//                    list.add(productCheckout)
-//                }
-//            }
-//            return list
-//        }
+    val listCheckout: List<Order>
+        get() {
+            val list = mutableListOf<Order>()
+            order.value?.let {
+                for (product in it) {
+                    val productDetail = Order(
+                        product.account
+                      )
+                    list.add(productDetail)
+                }
+            }
+            return list
+        }
 
     init {
-        getorder()
+        getOrder()
 
     }
 
-    private fun getorder() {
+    private fun getOrder() {
         coroutineScope.launch {
-            var getPropertiesDeferred = CafeApi.retrofitService.getorder()
+            var getPropertiesDeferred = CafeApi.retrofitService.getOrder()
             try {
                 val listResult = getPropertiesDeferred.await()
 //                _status.value = listResult

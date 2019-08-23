@@ -6,6 +6,7 @@ import com.squareup.moshi.Moshi
 import com.ssc.cafe.`object`.CafeItem
 import com.ssc.cafe.`object`.Order
 import com.ssc.cafe.`object`.OrderItem
+import com.ssc.cafe.`object`.OrderName
 import com.waynechen.w74latte.network.MapJsonAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
@@ -46,13 +47,13 @@ interface CafeService {
             Deferred<List<CafeItem>>
 
     @GET("orders.json")
-    fun getorder(@Query("orderBy") orderBy : String = "\"account\"",
+    fun getOrder(@Query("orderBy") orderBy : String = "\"account\"",
                  @Query("equalTo") equalTo : String = "\"sophie@74latte.com\""):
             Deferred<Map<String, Order>>
 
     @POST("orders.json")
     fun postItems(@Body orderItem: OrderItem):
-            Deferred<Order>
+            Deferred<OrderName>
 }
 
 
