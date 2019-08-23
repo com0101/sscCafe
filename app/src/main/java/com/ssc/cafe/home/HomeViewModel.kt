@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.ssc.cafe.`object`.CafeItem
+import com.ssc.cafe.`object`.OrderItem
 import com.ssc.cafe.data.AddItem
 import com.ssc.cafe.data.AddItemDao
 import com.ssc.cafe.network.CafeApi
@@ -46,6 +47,22 @@ class HomeViewModel(val data: AddItemDao, app: Application) : AndroidViewModel(a
         }
 
     }
+
+    fun postItems(orderItem: OrderItem) {
+        coroutineScope.launch {
+            var getPropertiesDeferred = CafeApi.retrofitService.postItems(orderItem)
+            try {
+                val listResult = getPropertiesDeferred.await()
+//                _status.value = listResult
+
+                Log.i("Demo","")
+
+            } catch (e: Exception) {
+                Log.i("Demo", "exception=${e.message}")
+            }
+        }
+    }
+
 
 
     private fun initializeProduct() {

@@ -2,7 +2,7 @@ package com.waynechen.w74latte.network
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson
-//import com.waynechen.w74latte.data.Order
+import com.ssc.cafe.`object`.Order
 
 /**
  * Created by Wayne Chen on 2019-08-22.
@@ -24,10 +24,10 @@ class MapJsonAdapterFactory {
     }
 }
 
-//fun Map<String, Order>.toOrderList(): List<Order>? {
-//    val list = mutableListOf<Order>()
-//    for ((key, value) in this) {
-//        list.add(value.apply { id = key })
-//    }
-//    return list
-//}
+fun Map<String, Order>.toOrderList(): List<Order>? {
+    val list = mutableListOf<Order>()
+    for ((key, value) in this) {
+        list.add(value.apply { id = key })
+    }
+    return list
+}

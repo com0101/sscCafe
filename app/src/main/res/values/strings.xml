@@ -11,4 +11,10 @@
     <string name="type_hot">Hot</string>
     <string name="sugar_yes">Yes</string>
     <string name="sugar_non">No</string>
+    <string name="order_number_title">Order Number :</string>
+    <string name="order_time_title">Order Time :</string>
+    <string name="order_account_title">Order Account :</string>
+    <string name="total_item_title">Total Item :</string>
+    <string name="total_item_price">Total Price :</string>
+    <string name="order_number">20190823</string>
 </resources>

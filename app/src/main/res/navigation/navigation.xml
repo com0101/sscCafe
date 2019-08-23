@@ -10,4 +10,19 @@
               android:label="HomeFragment"
               tools:layout="@layout/fragment_home"/>
 
+    <fragment android:id="@+id/orderHistoryFragment"
+              android:name="com.ssc.cafe.order.OrderHistoryFragment"
+              android:label="OrderHistoryFragment"
+              tools:layout="@layout/fragment_order_history"/>
+    <action
+            android:id="@+id/action_global_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" app:popUpTo="@+id/homeFragment"/>
+
+    <fragment android:id="@+id/productConfirmFragment"
+              android:name="com.ssc.cafe.confirm.ProductConfirmFragment"
+              android:label="fragment_product_confirm"
+              tools:layout="@layout/fragment_product_confirm"/>
+    <action android:id="@+id/action_global_productConfirmFragment"
+            app:destination="@id/productConfirmFragment" app:popUpTo="@+id/homeFragment"/>
+
 </navigation>
