@@ -55,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:textAllCaps="false"
                 android:background="@color/gray"
+                android:onClick="@{() -> viewModel.post()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>

@@ -6,8 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.ssc.cafe.`object`.CafeItem
-import com.ssc.cafe.`object`.OrderItem
+import com.ssc.cafe.`object`.*
 import com.ssc.cafe.data.AddItem
 import com.ssc.cafe.data.AddItemDao
 import com.ssc.cafe.network.CafeApi
@@ -19,7 +18,13 @@ class HomeViewModel(val data: AddItemDao, app: Application) : AndroidViewModel(a
     val status: LiveData<List<CafeItem>>
         get() = _status
 
+    private val _order = MutableLiveData<Order>()
+    val order: LiveData<Order>
+        get() = _order
+
     var product = MutableLiveData<CafeItem>()
+
+
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -27,6 +32,8 @@ class HomeViewModel(val data: AddItemDao, app: Application) : AndroidViewModel(a
 
 //    val productDatabase = AddItemDatabase.getInstance(ApplicationContext.applicationContext()).addItemDao
     val selectedProduct = data.getAllProducts()
+    val countInCart: LiveData<Int> = Transformations.map(selectedProduct) { it.size }
+    val price: LiveData<Int> = Transformations.map(selectedProduct) { it -> it.sumBy { it.product_price.toInt() } }
 
     init {
         getItems()
@@ -53,7 +60,7 @@ class HomeViewModel(val data: AddItemDao, app: Application) : AndroidViewModel(a
             var getPropertiesDeferred = CafeApi.retrofitService.postItems(orderItem)
             try {
                 val listResult = getPropertiesDeferred.await()
-//                _status.value = listResult
+                _order.value = listResult
 
                 Log.i("Demo","")
 
@@ -61,6 +68,25 @@ class HomeViewModel(val data: AddItemDao, app: Application) : AndroidViewModel(a
                 Log.i("Demo", "exception=${e.message}")
             }
         }
+    }
+
+    fun post() {
+        postItems(OrderItem(
+            "sophie@74latte.com",
+            OrderCafe(
+                listOf(OrderDetail("1",true,false)),
+                listOf(OrderDetail("1",true,false)),
+                listOf(OrderDetail("1",true,false)),
+                listOf(OrderDetail("1",true,false)),
+                listOf(OrderDetail("1",true,false)),
+                listOf(OrderDetail("1",true,false)),
+                listOf(OrderDetail("1",true,false))
+            ),
+            countInCart.value!!.toLong(),
+            price.value!!.toLong(),
+            0,
+            12312331321
+        ))
     }
 
 

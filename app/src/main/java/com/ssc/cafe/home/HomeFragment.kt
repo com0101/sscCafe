@@ -53,6 +53,13 @@ class HomeFragment : Fragment() {
             Log.i("Sophie_product" , "product: $it")
         })
 
+        viewModel.price.observe(this, Observer {
+            Log.i("Sophie_price" , "price: $it")
+        })
+        viewModel.countInCart.observe(this, Observer {
+            Log.i("Sophie_countInCart" , "countInCart: $it")
+        })
+
 
         return binding.root
     }

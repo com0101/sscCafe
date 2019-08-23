@@ -1,9 +1,17 @@
 package com.ssc.cafe.`object`
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+
 data class OrderItem (
 
-    var account: String,
-    var content: OrderCafe
+    var account: String?=null,
+    var content: OrderCafe?=null,
+    var itemCount: Long,
+    var price: Long,
+    var status: Long,
+    var time: Long
 
 )
 
@@ -19,6 +27,6 @@ data class OrderCafe (
 
 data class OrderDetail (
     var cups: String ?= null,
-    var iced: String,
-    var sugar: String
+    var iced: Boolean,
+    var sugar: Boolean
 )

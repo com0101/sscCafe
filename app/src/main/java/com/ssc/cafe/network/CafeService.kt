@@ -48,11 +48,11 @@ interface CafeService {
     @GET("orders.json")
     fun getorder(@Query("orderBy") orderBy : String = "\"account\"",
                  @Query("equalTo") equalTo : String = "\"sophie@74latte.com\""):
-            Deferred<List<Order>>
+            Deferred<Map<String, Order>>
 
     @POST("orders.json")
     fun postItems(@Body orderItem: OrderItem):
-            Deferred<OrderItem>
+            Deferred<Order>
 }
 
 

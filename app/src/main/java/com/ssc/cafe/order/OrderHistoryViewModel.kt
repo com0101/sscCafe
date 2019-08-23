@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ssc.cafe.`object`.CafeItem
 import com.ssc.cafe.`object`.Order
+import com.ssc.cafe.`object`.OrderItem
 import com.ssc.cafe.data.AddItem
 import com.ssc.cafe.data.AddItemDao
 import com.ssc.cafe.network.CafeApi
@@ -50,7 +51,7 @@ class OrderHistoryViewModel(val data: AddItemDao, app: Application) : AndroidVie
             var getPropertiesDeferred = CafeApi.retrofitService.getorder()
             try {
                 val listResult = getPropertiesDeferred.await()
-                _status.value = listResult
+//                _status.value = listResult
                 Log.i("Sophie_order", "order: $listResult")
 
             } catch (e: Exception) {

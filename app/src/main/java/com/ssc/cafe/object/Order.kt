@@ -6,6 +6,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class Order (
 
-    var id: String
+    var id: String ?= null
 
 ): Parcelable
