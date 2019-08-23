@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="icon_size" tools:override="true">36dp</dimen>
+    <dimen name="txtSize">16sp</dimen>
+    <dimen name="radioPadding">25dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>
