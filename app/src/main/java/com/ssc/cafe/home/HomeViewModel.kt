@@ -34,7 +34,7 @@ class HomeViewModel(val data: AddItemDao, app: Application) : AndroidViewModel(a
     val selectedProduct = data.getAllProducts()
     val countInCart: LiveData<Int> = Transformations.map(selectedProduct) { it.size }
     val price: LiveData<Int> = Transformations.map(selectedProduct) { it -> it.sumBy { it.product_price.toInt() } }
-
+    val contentName: LiveData<List<String>> = Transformations.map(selectedProduct) { it -> it.map { it.product_name   } }
     init {
         getItems()
         initializeProduct()
@@ -72,15 +72,7 @@ class HomeViewModel(val data: AddItemDao, app: Application) : AndroidViewModel(a
     fun post() {
         postItems(OrderItem(
             "sophie@74latte.com",
-            OrderCafe(
-                listOf(OrderDetail("1",true,false)),
-                listOf(OrderDetail("1",true,false)),
-                listOf(OrderDetail("1",true,false)),
-                listOf(OrderDetail("1",true,false)),
-                listOf(OrderDetail("1",true,false)),
-                listOf(OrderDetail("1",true,false)),
-                listOf(OrderDetail("1",true,false))
-            ),
+            mapOf(product.value!!.name to listOf(OrderDetail("1",true,false))),
             countInCart.value!!.toLong(),
             price.value!!.toLong(),
             0,

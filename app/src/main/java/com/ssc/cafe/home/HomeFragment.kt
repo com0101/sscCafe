@@ -59,6 +59,9 @@ class HomeFragment : Fragment() {
         viewModel.countInCart.observe(this, Observer {
             Log.i("Sophie_countInCart" , "countInCart: $it")
         })
+        viewModel.contentName.observe(this, Observer {
+            Log.i("Sophie_contentName" , "contentName: $it")
+        })
 
 
         return binding.root
